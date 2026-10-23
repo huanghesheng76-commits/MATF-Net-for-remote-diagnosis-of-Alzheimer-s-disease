@@ -1,3 +1,10 @@
+## Overview
+
+The model takes three aligned image inputs, denoted **AP**, **CP**, and **SP**, and predicts a class label. Each view is processed by a separate EfficientNet-style feature extraction branch. The extracted features are refined through spatial and channel attention, the SimAM attention mechanism used for feature enhancement, and an enhanced squeeze-and-excitation module. Together, these operations form the feature enhancement and fusion stage. The final representation concatenates two pooled pairwise feature combinations, AP + SP and CP + SP, before classification.
+
+The implementation includes components based on prior research. Their original publications are acknowledged in [References](#references). Inclusion of a method here does not imply that the method itself was introduced by this project.
+
+
 # Original Code Repositories and Research Acknowledgements
 
 > This repository accompanies an unpublished research implementation. The paper has not yet been publicly released. This file lists relevant prior methods and public reference repositories; a method-level link does **not** establish that the present source file was directly copied from that repository.
@@ -11,7 +18,7 @@
 | SHViT / SHSA | `SHSA.py` | [ysj9909/SHViT](https://github.com/ysj9909/SHViT) | SHViT: Single-Head Vision Transformer with Memory Efficient Macro Design (CVPR 2024) | Single-head self-attention module |
 | CBAM | `Channel.py; Spatial.py` | [Jongchan/attention-module](https://github.com/Jongchan/attention-module) | CBAM: Convolutional Block Attention Module (ECCV 2018) | Channel/spatial attention inspired by CBAM |
 | SENet | `model_eff2.py; SEAttention2.py` | [hujie-frank/SENet](https://github.com/hujie-frank/SENet) | Squeeze-and-Excitation Networks (CVPR 2018) | SqueezeExcitation and modified pooling-based SE-like block |
-| SimAM | `model_eff2.py` | [ZjjConan/SimAM](https://github.com/ZjjConan/SimAM) | SimAM: A Simple, Parameter-Free Attention Module for Convolutional Neural Networks (ICML 2021) | Feature enhancement |
+| SimAM (feature enhancement) | `model_eff2.py` | [ZjjConan/SimAM](https://github.com/ZjjConan/SimAM) | SimAM: A Simple, Parameter-Free Attention Module for Convolutional Neural Networks (ICML 2021) | SimAM method used for feature enhancement within fusion |
 | ECA-Net | `model_eff2.py` | [BangguWu/ECANet](https://github.com/BangguWu/ECANet) | ECA-Net: Efficient Channel Attention for Deep Convolutional Neural Networks (CVPR 2020) | Defined but not called in current forward path |
 | SCNet / SCConv | `model_eff2.py` | [MCG-NKU/SCNet](https://github.com/MCG-NKU/SCNet) | Improving Convolutional Networks with Self-Calibrated Convolutions (CVPR 2020) | Defined but not called in current forward path |
 
@@ -22,6 +29,7 @@
 - **SHSA:** `SHSA.py` implements single-head self-attention associated with SHViT; do not cite only the general Transformer literature.
 - **CBAM-related modules:** `Channel.py` and `Spatial.py` use pooling-based channel/spatial attention related to CBAM; whether the exact source was copied cannot be established from these files alone.
 - **Modified SE:** `SEAttention2.py` combines average, maximum and variance pooling, and a context convolution. It should not be described as an unmodified SENet block.
+- **Feature enhancement in fusion:** `model_eff2.py` uses the existing SimAM mechanism for feature enhancement of each branch before AP + SP and CP + SP feature fusion.
 - **Unused classes:** ECA and SCConv classes are defined in `model_eff2.py` but are not used in the shown model forward pass; they should not be claimed as active parts of the architecture.
 
 ## Unpublished manuscript statement
