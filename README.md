@@ -11,7 +11,7 @@
 | SHViT / SHSA | `SHSA.py` | [ysj9909/SHViT](https://github.com/ysj9909/SHViT) | SHViT: Single-Head Vision Transformer with Memory Efficient Macro Design (CVPR 2024) | Single-head self-attention module |
 | CBAM | `Channel.py; Spatial.py` | [Jongchan/attention-module](https://github.com/Jongchan/attention-module) | CBAM: Convolutional Block Attention Module (ECCV 2018) | Channel/spatial attention inspired by CBAM |
 | SENet | `model_eff2.py; SEAttention2.py` | [hujie-frank/SENet](https://github.com/hujie-frank/SENet) | Squeeze-and-Excitation Networks (CVPR 2018) | SqueezeExcitation and modified pooling-based SE-like block |
-| SimAM | `model_eff2.py` | [ZjjConan/SimAM](https://github.com/ZjjConan/SimAM) | SimAM: A Simple, Parameter-Free Attention Module for Convolutional Neural Networks (ICML 2021) | Modified implementation: spatial Softmax rather than original Sigmoid |
+| SimAM | `model_eff2.py` | [ZjjConan/SimAM](https://github.com/ZjjConan/SimAM) | SimAM: A Simple, Parameter-Free Attention Module for Convolutional Neural Networks (ICML 2021) | Feature enhancement |
 | ECA-Net | `model_eff2.py` | [BangguWu/ECANet](https://github.com/BangguWu/ECANet) | ECA-Net: Efficient Channel Attention for Deep Convolutional Neural Networks (CVPR 2020) | Defined but not called in current forward path |
 | SCNet / SCConv | `model_eff2.py` | [MCG-NKU/SCNet](https://github.com/MCG-NKU/SCNet) | Improving Convolutional Networks with Self-Calibrated Convolutions (CVPR 2020) | Defined but not called in current forward path |
 
@@ -22,7 +22,6 @@
 - **SHSA:** `SHSA.py` implements single-head self-attention associated with SHViT; do not cite only the general Transformer literature.
 - **CBAM-related modules:** `Channel.py` and `Spatial.py` use pooling-based channel/spatial attention related to CBAM; whether the exact source was copied cannot be established from these files alone.
 - **Modified SE:** `SEAttention2.py` combines average, maximum and variance pooling, and a context convolution. It should not be described as an unmodified SENet block.
-- **Modified SimAM:** `model_eff2.py` applies a spatial `Softmax` rather than the original SimAM's `Sigmoid`; label this as a modified or SimAM-inspired implementation.
 - **Unused classes:** ECA and SCConv classes are defined in `model_eff2.py` but are not used in the shown model forward pass; they should not be claimed as active parts of the architecture.
 
 ## Unpublished manuscript statement
